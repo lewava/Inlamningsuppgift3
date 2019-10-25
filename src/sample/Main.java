@@ -3,6 +3,7 @@ package sample;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -23,7 +24,7 @@ public class Main extends Application {
     private Button button13 = new Button("13");
     private Button button14 = new Button("14");
     private Button button15 = new Button("15");
-    private Button button16 = new Button("16");
+    private Label empty = new Label();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -32,7 +33,7 @@ public class Main extends Application {
         gridPane.addRow(0, button1, button2, button3, button4);
         gridPane.addRow(1, button5, button6, button7, button8);
         gridPane.addRow(2, button9, button10, button11, button12);
-        gridPane.addRow(3, button13, button14, button15, button16);
+        gridPane.addRow(3, button13, button14, button15, empty);
 
         gridPane.setHgap(10);
         gridPane.setVgap(10);
@@ -52,9 +53,9 @@ public class Main extends Application {
         button13.setMinSize(100,100);
         button14.setMinSize(100,100);
         button15.setMinSize(100,100);
-        button16.setMinSize(100,100);
+        empty.setMinSize(100,100);
 
-        Scene root = new Scene(gridPane, 432,432);
+        Scene root = new Scene(gridPane, 433,433);
         primaryStage.setTitle("15 Game");
         primaryStage.sizeToScene();
         primaryStage.setScene(root);
