@@ -29,7 +29,7 @@ public class Main extends Application {
     private Label empty = new Label();
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(10, 10, 10, 10));
@@ -41,22 +41,22 @@ public class Main extends Application {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
 
-        button1.setMinSize(100,100);
-        button2.setMinSize(100,100);
-        button3.setMinSize(100,100);
-        button4.setMinSize(100,100);
-        button5.setMinSize(100,100);
-        button6.setMinSize(100,100);
-        button7.setMinSize(100,100);
-        button8.setMinSize(100,100);
-        button9.setMinSize(100,100);
-        button10.setMinSize(100,100);
-        button11.setMinSize(100,100);
-        button12.setMinSize(100,100);
-        button13.setMinSize(100,100);
-        button14.setMinSize(100,100);
-        button15.setMinSize(100,100);
-        empty.setMinSize(100,100);
+        button1.setMinSize(100, 100);
+        button2.setMinSize(100, 100);
+        button3.setMinSize(100, 100);
+        button4.setMinSize(100, 100);
+        button5.setMinSize(100, 100);
+        button6.setMinSize(100, 100);
+        button7.setMinSize(100, 100);
+        button8.setMinSize(100, 100);
+        button9.setMinSize(100, 100);
+        button10.setMinSize(100, 100);
+        button11.setMinSize(100, 100);
+        button12.setMinSize(100, 100);
+        button13.setMinSize(100, 100);
+        button14.setMinSize(100, 100);
+        button15.setMinSize(100, 100);
+        empty.setMinSize(100, 100);
 
         button1.setOnAction(event -> {
             controller.swapButtons(button1, empty);
@@ -104,7 +104,7 @@ public class Main extends Application {
             controller.swapButtons(button15, empty);
         });
 
-        Scene root = new Scene(gridPane, 450,450);
+        Scene root = new Scene(gridPane, 450, 450);
         primaryStage.setTitle("15 Game");
         primaryStage.sizeToScene();
         primaryStage.setScene(root);

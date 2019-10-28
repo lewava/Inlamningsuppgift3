@@ -9,13 +9,13 @@ public class Controller {
     public void swapButtons(Button button, Label empty) {
 
         if (checkEmpty(button, empty)) {
-        Integer temp = GridPane.getRowIndex(button);
-        GridPane.setRowIndex(button, GridPane.getRowIndex(empty));
-        GridPane.setRowIndex(empty, temp);
+            Integer temp = GridPane.getRowIndex(button);
+            GridPane.setRowIndex(button, GridPane.getRowIndex(empty));
+            GridPane.setRowIndex(empty, temp);
 
-        temp = GridPane.getColumnIndex(button);
-        GridPane.setColumnIndex(button, GridPane.getColumnIndex(empty));
-        GridPane.setColumnIndex(empty, temp);
+            temp = GridPane.getColumnIndex(button);
+            GridPane.setColumnIndex(button, GridPane.getColumnIndex(empty));
+            GridPane.setColumnIndex(empty, temp);
         }
     }
 
@@ -26,10 +26,10 @@ public class Controller {
         Integer emptyRowIndex = GridPane.getRowIndex(empty);
         Integer emptyColumnIndex = GridPane.getColumnIndex(empty);
 
-        if (buttonColumnIndex == emptyColumnIndex -1 && buttonRowIndex == emptyRowIndex ||
-        buttonColumnIndex == emptyColumnIndex && buttonRowIndex == emptyRowIndex -1 ||
-        buttonColumnIndex == emptyColumnIndex + 1 && buttonRowIndex == emptyRowIndex ||
-        buttonColumnIndex == emptyColumnIndex && buttonRowIndex == emptyRowIndex + 1) {
+        if (buttonColumnIndex == emptyColumnIndex - 1 && buttonRowIndex == emptyRowIndex ||
+                buttonColumnIndex == emptyColumnIndex && buttonRowIndex == emptyRowIndex - 1 ||
+                buttonColumnIndex == emptyColumnIndex + 1 && buttonRowIndex == emptyRowIndex ||
+                buttonColumnIndex == emptyColumnIndex && buttonRowIndex == emptyRowIndex + 1) {
             check = true;
         }
         return check;
