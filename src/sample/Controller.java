@@ -3,6 +3,8 @@ package sample;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import java.util.Collections;
+import java.util.List;
 
 public class Controller {
 
@@ -33,5 +35,20 @@ public class Controller {
             check = true;
         }
         return check;
+    }
+
+    public void newGame(List<Button> list, Label empty) {
+
+        Collections.shuffle(list);
+
+        for (Button button: list) {
+            Integer temp = GridPane.getRowIndex(button);
+            GridPane.setRowIndex(button, GridPane.getRowIndex(empty));
+            GridPane.setRowIndex(empty, temp);
+
+            temp = GridPane.getColumnIndex(button);
+            GridPane.setColumnIndex(button, GridPane.getColumnIndex(empty));
+            GridPane.setColumnIndex(empty, temp);
+        }
     }
 }

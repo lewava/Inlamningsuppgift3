@@ -8,9 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main extends Application {
 
     private Controller controller = new Controller();
+    private List<Button> buttonList = new ArrayList<>();
     private Button button1 = new Button("1");
     private Button button2 = new Button("2");
     private Button button3 = new Button("3");
@@ -30,13 +34,28 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         gridPane.addRow(0, button1, button2, button3, button4);
         gridPane.addRow(1, button5, button6, button7, button8);
         gridPane.addRow(2, button9, button10, button11, button12);
         gridPane.addRow(3, button13, button14, button15, empty);
+
+        buttonList.add(button1);
+        buttonList.add(button2);
+        buttonList.add(button3);
+        buttonList.add(button4);
+        buttonList.add(button5);
+        buttonList.add(button6);
+        buttonList.add(button7);
+        buttonList.add(button8);
+        buttonList.add(button9);
+        buttonList.add(button10);
+        buttonList.add(button11);
+        buttonList.add(button12);
+        buttonList.add(button13);
+        buttonList.add(button14);
+        buttonList.add(button15);
 
         gridPane.setHgap(10);
         gridPane.setVgap(10);
@@ -103,6 +122,8 @@ public class Main extends Application {
         button15.setOnAction(event -> {
             controller.swapButtons(button15, empty);
         });
+
+        controller.newGame(buttonList, empty);
 
         Scene root = new Scene(gridPane, 450, 450);
         primaryStage.setTitle("15 Game");
