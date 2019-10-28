@@ -2,10 +2,13 @@ package sample;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -30,7 +33,12 @@ public class Main extends Application {
     private Button button13 = new Button("13");
     private Button button14 = new Button("14");
     private Button button15 = new Button("15");
+    private Button newGame = new Button("New Game");
     private Label empty = new Label();
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -125,14 +133,22 @@ public class Main extends Application {
 
         controller.newGame(buttonList, empty);
 
-        Scene root = new Scene(gridPane, 450, 450);
+        HBox topMenu = new HBox();
+        topMenu.getChildren().add(newGame);
+        topMenu.setAlignment(Pos.CENTER);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(topMenu);
+        borderPane.setCenter(gridPane);
+
+        newGame.setOnAction(event -> {
+            controller.newGame(buttonList, empty);
+        });
+
+        Scene root = new Scene(borderPane, 450, 475);
         primaryStage.setTitle("15 Game");
         primaryStage.sizeToScene();
         primaryStage.setScene(root);
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
