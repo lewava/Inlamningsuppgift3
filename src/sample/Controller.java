@@ -3,6 +3,7 @@ package sample;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class Controller {
 
         Collections.shuffle(list);
 
-        for (Button button: list) {
+        for (Button button : list) {
             Integer temp = GridPane.getRowIndex(button);
             GridPane.setRowIndex(button, GridPane.getRowIndex(empty));
             GridPane.setRowIndex(empty, temp);

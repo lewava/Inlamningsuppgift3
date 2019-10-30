@@ -41,7 +41,8 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
+
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         gridPane.addRow(0, button1, button2, button3, button4);
@@ -87,51 +88,83 @@ public class Main extends Application {
 
         button1.setOnAction(event -> {
             controller.swapButtons(button1, empty);
+            win();
         });
+
         button2.setOnAction(event -> {
             controller.swapButtons(button2, empty);
+            win();
         });
+
         button3.setOnAction(event -> {
             controller.swapButtons(button3, empty);
+            win();
         });
+
         button4.setOnAction(event -> {
             controller.swapButtons(button4, empty);
+            win();
         });
+
         button5.setOnAction(event -> {
             controller.swapButtons(button5, empty);
+            win();
         });
+
         button6.setOnAction(event -> {
             controller.swapButtons(button6, empty);
+            win();
         });
+
         button7.setOnAction(event -> {
             controller.swapButtons(button7, empty);
         });
+
         button8.setOnAction(event -> {
             controller.swapButtons(button8, empty);
+            win();
         });
+
         button9.setOnAction(event -> {
             controller.swapButtons(button9, empty);
+            win();
         });
+
         button10.setOnAction(event -> {
             controller.swapButtons(button10, empty);
+            win();
         });
+
         button11.setOnAction(event -> {
             controller.swapButtons(button11, empty);
+            win();
         });
+
         button12.setOnAction(event -> {
             controller.swapButtons(button12, empty);
+            win();
         });
+
         button13.setOnAction(event -> {
             controller.swapButtons(button13, empty);
+            win();
         });
+
         button14.setOnAction(event -> {
             controller.swapButtons(button14, empty);
+            win();
         });
+
         button15.setOnAction(event -> {
             controller.swapButtons(button15, empty);
+            win();
         });
 
         controller.newGame(buttonList, empty);
+
+        newGame.setOnAction(event -> {
+            controller.newGame(buttonList, empty);
+        });
 
         HBox topMenu = new HBox();
         topMenu.getChildren().add(newGame);
@@ -141,14 +174,31 @@ public class Main extends Application {
         borderPane.setTop(topMenu);
         borderPane.setCenter(gridPane);
 
-        newGame.setOnAction(event -> {
-            controller.newGame(buttonList, empty);
-        });
-
         Scene root = new Scene(borderPane, 450, 475);
         primaryStage.setTitle("15 Game");
         primaryStage.sizeToScene();
         primaryStage.setScene(root);
         primaryStage.show();
+    }
+
+    public void win() {
+        if (GridPane.getRowIndex(button1) == 0 && GridPane.getColumnIndex(button1) == 0 &&
+                GridPane.getRowIndex(button2) == 0 && GridPane.getColumnIndex(button2) == 1 &&
+                GridPane.getRowIndex(button3) == 0 && GridPane.getColumnIndex(button3) == 2 &&
+                GridPane.getRowIndex(button4) == 0 && GridPane.getColumnIndex(button4) == 3 &&
+                GridPane.getRowIndex(button5) == 1 && GridPane.getColumnIndex(button5) == 0 &&
+                GridPane.getRowIndex(button6) == 1 && GridPane.getColumnIndex(button6) == 1 &&
+                GridPane.getRowIndex(button7) == 1 && GridPane.getColumnIndex(button7) == 2 &&
+                GridPane.getRowIndex(button8) == 1 && GridPane.getColumnIndex(button8) == 3 &&
+                GridPane.getRowIndex(button9) == 2 && GridPane.getColumnIndex(button9) == 0 &&
+                GridPane.getRowIndex(button10) == 2 && GridPane.getColumnIndex(button10) == 1 &&
+                GridPane.getRowIndex(button11) == 2 && GridPane.getColumnIndex(button11) == 2 &&
+                GridPane.getRowIndex(button12) == 2 && GridPane.getColumnIndex(button12) == 3 &&
+                GridPane.getRowIndex(button13) == 3 && GridPane.getColumnIndex(button13) == 0 &&
+                GridPane.getRowIndex(button14) == 3 && GridPane.getColumnIndex(button14) == 1 &&
+                GridPane.getRowIndex(button15) == 3 && GridPane.getColumnIndex(button15) == 2 &&
+                GridPane.getRowIndex(empty) == 3 && GridPane.getColumnIndex(empty) == 3) {
+            System.out.println("Win");
+        }
     }
 }
