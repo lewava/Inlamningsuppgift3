@@ -9,12 +9,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main extends Application {
+public class Game extends Application {
 
     private Controller controller = new Controller();
     private List<Button> buttonList = new ArrayList<>();
@@ -45,29 +47,13 @@ public class Main extends Application {
 
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(10, 10, 10, 10));
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+
         gridPane.addRow(0, button1, button2, button3, button4);
         gridPane.addRow(1, button5, button6, button7, button8);
         gridPane.addRow(2, button9, button10, button11, button12);
         gridPane.addRow(3, button13, button14, button15, empty);
-
-        buttonList.add(button1);
-        buttonList.add(button2);
-        buttonList.add(button3);
-        buttonList.add(button4);
-        buttonList.add(button5);
-        buttonList.add(button6);
-        buttonList.add(button7);
-        buttonList.add(button8);
-        buttonList.add(button9);
-        buttonList.add(button10);
-        buttonList.add(button11);
-        buttonList.add(button12);
-        buttonList.add(button13);
-        buttonList.add(button14);
-        buttonList.add(button15);
-
-        gridPane.setHgap(10);
-        gridPane.setVgap(10);
 
         button1.setMinSize(100, 100);
         button2.setMinSize(100, 100);
@@ -85,6 +71,22 @@ public class Main extends Application {
         button14.setMinSize(100, 100);
         button15.setMinSize(100, 100);
         empty.setMinSize(100, 100);
+
+        buttonList.add(button1);
+        buttonList.add(button2);
+        buttonList.add(button3);
+        buttonList.add(button4);
+        buttonList.add(button5);
+        buttonList.add(button6);
+        buttonList.add(button7);
+        buttonList.add(button8);
+        buttonList.add(button9);
+        buttonList.add(button10);
+        buttonList.add(button11);
+        buttonList.add(button12);
+        buttonList.add(button13);
+        buttonList.add(button14);
+        buttonList.add(button15);
 
         button1.setOnAction(event -> {
             controller.swapButtons(button1, empty);
@@ -160,13 +162,14 @@ public class Main extends Application {
             win();
         });
 
-        controller.newGame(buttonList, empty);
-
         newGame.setOnAction(event -> {
             controller.newGame(buttonList, empty);
         });
 
+        controller.newGame(buttonList, empty);
+
         HBox topMenu = new HBox();
+        topMenu.setPadding(new Insets(10, 10, 0,10));
         topMenu.getChildren().add(newGame);
         topMenu.setAlignment(Pos.CENTER);
 
@@ -174,7 +177,7 @@ public class Main extends Application {
         borderPane.setTop(topMenu);
         borderPane.setCenter(gridPane);
 
-        Scene root = new Scene(borderPane, 450, 475);
+        Scene root = new Scene(borderPane, 450, 485);
         primaryStage.setTitle("15 Game");
         primaryStage.sizeToScene();
         primaryStage.setScene(root);
@@ -182,6 +185,7 @@ public class Main extends Application {
     }
 
     public void win() {
+
         if (GridPane.getRowIndex(button1) == 0 && GridPane.getColumnIndex(button1) == 0 &&
                 GridPane.getRowIndex(button2) == 0 && GridPane.getColumnIndex(button2) == 1 &&
                 GridPane.getRowIndex(button3) == 0 && GridPane.getColumnIndex(button3) == 2 &&
@@ -198,7 +202,46 @@ public class Main extends Application {
                 GridPane.getRowIndex(button14) == 3 && GridPane.getColumnIndex(button14) == 1 &&
                 GridPane.getRowIndex(button15) == 3 && GridPane.getColumnIndex(button15) == 2 &&
                 GridPane.getRowIndex(empty) == 3 && GridPane.getColumnIndex(empty) == 3) {
-            System.out.println("Win");
+
+            winAlertBox("YOU WON", "Congratulations you won!");
         }
+    }
+
+    public void winAlertBox(String title, String messsage) {
+
+        Stage winBox = new Stage();
+
+        winBox.initModality(Modality.APPLICATION_MODAL);
+        winBox.setTitle(title);
+
+        Label winMessage = new Label();
+        winMessage.setText(messsage);
+
+        Button closeButton = new Button("Exit Game");
+        closeButton.setOnAction(event -> System.exit(0));
+
+        Button newGame = new Button("New Game");
+        newGame.setOnAction(event -> {
+            winBox.close();
+            controller.newGame(buttonList, empty);
+        });
+
+        HBox hBox1 = new HBox();
+        hBox1.setPadding(new Insets(10, 10, 5, 10));
+        hBox1.getChildren().add(winMessage);
+        hBox1.setAlignment(Pos.CENTER);
+
+        HBox hBox2 = new HBox();
+        hBox2.setPadding(new Insets(5, 10, 10, 10));
+        hBox2.setSpacing(5);
+        hBox2.getChildren().addAll(closeButton, newGame);
+        hBox2.setAlignment(Pos.CENTER);
+
+        VBox layout = new VBox();
+        layout.getChildren().addAll(hBox1, hBox2);
+
+        Scene scene = new Scene(layout, 180, 75);
+        winBox.setScene(scene);
+        winBox.showAndWait();
     }
 }
